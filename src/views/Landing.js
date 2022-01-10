@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BasicBtn from "../components/elements/BasicBtn";
+import LinkBtn from "../components/elements/LinkBtn";
 import ContentContainer from "../components/elements/ContentContainer";
 import Background from "../images/landing.jpg";
 
@@ -10,8 +10,8 @@ const Landing = () => {
         <Card>
           <Text>A blog where I share my thoughts on what I am working on.</Text>
           <div>
-            <BasicBtn to="/signup" text="Sign Up" />
-            <BasicBtn to="/login" text="Log In" primary="true" />
+            <LinkBtn to="/signup" text="Sign Up" />
+            <LinkBtn to="/login" text="Log In" primary="true" />
           </div>
         </Card>
       </LandingContainer>
