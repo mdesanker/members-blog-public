@@ -17,6 +17,7 @@ const ButtonWrapper = styled.button`
   border: 2px solid ${({ theme }) => theme.colors.mediumblue};
   border-radius: 5px;
   margin: 0.5rem;
+  cursor: pointer;
 
   &:hover {
     color: white;
