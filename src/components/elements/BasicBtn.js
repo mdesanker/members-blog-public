@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-const BasicBtn = ({ text, to, primary, secondary }) => {
+const BasicBtn = ({ text, to, primary }) => {
   return (
-    <ButtonWrapper to={to} primary={primary} secondary={secondary}>
+    <ButtonWrapper to={to} primary={primary}>
       {text}
     </ButtonWrapper>
   );

@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import BasicBtn from "../components/elements/BasicBtn";
+import ContentContainer from "../components/elements/ContentContainer";
 import Background from "../images/landing.jpg";
 
 const Landing = () => {
   return (
     <LandingWrapper>
-      <Container>
+      <LandingContainer>
         <Card>
           <Text>A blog where I share my thoughts on what I am working on.</Text>
           <div>
             <BasicBtn to="/signup" text="Sign Up" />
-            <BasicBtn to="/login" text="Log In" primary />
+            <BasicBtn to="/login" text="Log In" primary="true" />
           </div>
         </Card>
-      </Container>
+      </LandingContainer>
     </LandingWrapper>
   );
 };
@@ -24,19 +25,12 @@ const LandingWrapper = styled.main`
       rgba(255, 255, 255, 0.2)
     ),
     url(${Background});
-  width: 100%;
   background-size: cover;
   background-position: center;
-  height: 100vh;
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+const LandingContainer = styled(ContentContainer)`
   padding-top: 20vh;
-  align-items: center;
-  height: 100%;
-  max-width: ${({ theme }) => theme.widths.content};
 `;
 
 const Card = styled.div`

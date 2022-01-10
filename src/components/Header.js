@@ -25,7 +25,7 @@ const HeaderWrapper = styled.header`
   width: 100%;
   background-color: white;
   box-shadow: ${({ theme }) => theme.shadows.large};
-  height: 60px;
+  height: ${({ theme }) => theme.heights.header};
   position: fixed;
   top: 0;
 `;

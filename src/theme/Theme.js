@@ -14,6 +14,9 @@ const Theme = {
   widths: {
     content: "1000px",
   },
+  heights: {
+    header: "60px",
+  },
 };
 
 export default Theme;
