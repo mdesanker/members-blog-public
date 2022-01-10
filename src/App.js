@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import GlobalStyles from "./theme/GlobalStyles";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <GlobalStyles />
       <Header />
       <div>Hello, world!</div>
+      <Footer />
     </Fragment>
   );
 };
