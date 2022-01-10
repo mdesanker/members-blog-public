@@ -1,14 +1,16 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
-const BasicBtn = ({ text, onClick, primary, secondary }) => {
+const BasicBtn = ({ text, to, primary, secondary }) => {
   return (
-    <ButtonWrapper onClick={onClick} primary={primary} secondary={secondary}>
+    <ButtonWrapper to={to} primary={primary} secondary={secondary}>
       {text}
     </ButtonWrapper>
   );
 };
 
-const ButtonWrapper = styled.button`
+const ButtonWrapper = styled(Link)`
+  display: block;
   font-size: 1rem;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.mediumblue};
@@ -18,6 +20,7 @@ const ButtonWrapper = styled.button`
   border-radius: 3px;
   margin: 0.5rem;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     color: white;

@@ -9,8 +9,8 @@ const Landing = () => {
         <Card>
           <Text>A blog where I share my thoughts on what I am working on.</Text>
           <div>
-            <BasicBtn text="Sign Up" />
-            <BasicBtn text="Log In" primary />
+            <BasicBtn to="/signup" text="Sign Up" />
+            <BasicBtn to="/login" text="Log In" primary />
           </div>
         </Card>
       </Container>
@@ -48,6 +48,10 @@ const Card = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: ${({ theme }) => theme.shadows.large};
+
+  & div {
+    display: flex;
+  }
 `;
 
 const Text = styled.p`
