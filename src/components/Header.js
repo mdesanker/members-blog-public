@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <Container>
-        <Logo>Blog</Logo>
+        <Logo>Reflection</Logo>
       </Container>
     </HeaderWrapper>
   );
