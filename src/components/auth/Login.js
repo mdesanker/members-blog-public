@@ -13,18 +13,35 @@ const Login = () => {
 
   const { username, password } = formData;
 
+  const formChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
   return (
     <LoginWrapper>
       <Container>
         <Card>
           <Title>Log In</Title>
-          <Form>
+          <Form onSubmit={formSubmitHandler}>
             <FormGroup>
               <label htmlFor="username">Username</label>
               <input
                 type="text"
                 name="username"
                 id="username"
+                value={username}
+                onChange={formChangeHandler}
                 placeholder="Username"
               />
             </FormGroup>
@@ -34,6 +51,8 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
+                onChange={formChangeHandler}
                 placeholder="Password"
               />
             </FormGroup>
