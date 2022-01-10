@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import BasicBtn from "../elements/BasicBtn";
 import ContentContainer from "../elements/ContentContainer";
@@ -5,6 +6,13 @@ import Title from "../elements/Title";
 import Card from "../elements/Card";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = formData;
+
   return (
     <LoginWrapper>
       <Container>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import BasicBtn from "../elements/BasicBtn";
 import ContentContainer from "../elements/ContentContainer";
@@ -5,18 +6,47 @@ import Title from "../elements/Title";
 import Card from "../elements/Card";
 
 const Signup = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    password2: "",
+  });
+
+  const { username, password, password2 } = formData;
+
+  const formChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => {
+      return {
+        ...prevState,
+        [name]: value,
+      };
+    });
+  };
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log("Passwords do not match");
+    } else {
+      console.log(formData);
+    }
+  };
+
   return (
     <SignupWrapper>
       <Container>
         <Card>
           <Title>Create an Account</Title>
-          <Form>
+          <Form onSubmit={formSubmitHandler}>
             <FormGroup>
               <label htmlFor="username">Username</label>
               <input
                 type="text"
                 name="username"
                 id="username"
+                value={username}
+                onChange={formChangeHandler}
                 placeholder="Username"
               />
             </FormGroup>
@@ -26,6 +56,19 @@ const Signup = () => {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
+                onChange={formChangeHandler}
+                placeholder="Password"
+              />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="password2">Confirm Password</label>
+              <input
+                type="password"
+                name="password2"
+                id="password2"
+                value={password2}
+                onChange={formChangeHandler}
                 placeholder="Password"
               />
             </FormGroup>
@@ -50,8 +93,10 @@ const Form = styled.form`
 `;
 
 const FormGroup = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
   padding: 0.5rem;
 
