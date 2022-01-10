@@ -1,18 +1,28 @@
 import styled from "styled-components";
+import BasicBtn from "../components/elements/BasicBtn";
 import Background from "../images/landing.jpg";
 
 const Landing = () => {
   return (
     <LandingWrapper>
       <Container>
-        <Text>A blog where I share my thoughts on what I am working on.</Text>
+        <Card>
+          <Text>A blog where I share my thoughts on what I am working on.</Text>
+          <div>
+            <BasicBtn text="Sign Up" />
+            <BasicBtn text="Log In" primary />
+          </div>
+        </Card>
       </Container>
     </LandingWrapper>
   );
 };
 
 const LandingWrapper = styled.main`
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
     url(${Background});
   width: 100%;
   background-size: cover;
@@ -29,12 +39,22 @@ const Container = styled.div`
   max-width: ${({ theme }) => theme.widths.content};
 `;
 
-const Text = styled.p`
+const Card = styled.div`
   max-width: 50%;
-  color: white;
-  letter-spacing: 0.1rem;
+  padding: 1rem 2rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: ${({ theme }) => theme.shadows.large};
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.darkblue};
   text-align: center;
   line-height: 1.5;
+  margin: 0.5rem 0;
 `;
 
 export default Landing;

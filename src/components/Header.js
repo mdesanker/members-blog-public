@@ -36,7 +36,7 @@ const Container = styled.div`
 `;
 
 const Logo = styled.h1`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.darkblue};
   font-size: 2rem;
   letter-spacing: 0.2rem;
   text-decoration: line-through;

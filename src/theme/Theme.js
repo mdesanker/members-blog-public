@@ -1,8 +1,10 @@
 const Theme = {
   colors: {
-    primary: "#264653",
-    secondary: "green",
-    lightgray: "#efefef",
+    darkblue: "#1d3557",
+    mediumblue: "#457b9d",
+    lightblue: "#a8dadc",
+    offwhite: "#f1faee",
+    red: "#e63946",
   },
   shadows: {
     small: "0 1px 2px rgba(0, 0, 0, 0.2)",
