@@ -9,19 +9,19 @@ const BasicBtn = ({ type, text, onClick }) => {
 };
 
 const ButtonWrapper = styled.button`
-  color: ${({ theme }) => theme.colors.mediumblue};
+  color: white;
   font-size: 1rem;
   font-weight: bold;
   padding: 0.5rem 1rem;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.mediumblue};
   border: 2px solid ${({ theme }) => theme.colors.mediumblue};
-  border-radius: 5px;
+  // border-radius: 5px;
   margin: 0.5rem;
   cursor: pointer;
 
   &:hover {
-    color: white;
-    background-color: ${({ theme }) => theme.colors.mediumblue};
+    color: ${({ theme }) => theme.colors.mediumblue};
+    background-color: transparent;
   }
 `;
 

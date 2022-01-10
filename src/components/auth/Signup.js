@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import BasicBtn from "../elements/BasicBtn";
 import ContentContainer from "../elements/ContentContainer";
 import Title from "../elements/Title";
 import Card from "../elements/Card";
+import FormSmallText from "../elements/FormSmallText";
+import FormDescription from "../elements/FormDescription";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +40,11 @@ const Signup = () => {
     <SignupWrapper>
       <Container>
         <Card>
-          <Title>Create an Account</Title>
+          <Title>Sign Up</Title>
+          <FormDescription>
+            <i className="fas fa-user" />
+            Create an account
+          </FormDescription>
           <Form onSubmit={formSubmitHandler}>
             <FormGroup>
               <label htmlFor="username">Username</label>
@@ -74,6 +81,9 @@ const Signup = () => {
             </FormGroup>
             <BasicBtn type="submit" text="Sign Up" />
           </Form>
+          <FormSmallText>
+            Already have an account? <Link to="/login">Log In</Link>
+          </FormSmallText>
         </Card>
       </Container>
     </SignupWrapper>
