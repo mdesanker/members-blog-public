@@ -17,9 +17,12 @@ const Header = () => {
 };
 
 const HeaderWrapper = styled.header`
+  width: 100%;
   background-color: white;
   box-shadow: ${({ theme }) => theme.shadows.large};
   height: 60px;
+  position: fixed;
+  top: 0;
 `;
 
 const Container = styled.div`

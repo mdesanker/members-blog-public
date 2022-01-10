@@ -14,6 +14,7 @@ const FooterWrapper = styled.footer`
   align-items: center;
   width: 100%;
   height: 30px;
+  background-color: white;
   position: absolute;
   bottom: 0;
 `;
