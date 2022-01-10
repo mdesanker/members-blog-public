@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -7,8 +8,12 @@ const Header = () => {
         <Logo>Scratch</Logo>
         <NavBar>
           <ul>
-            <li>Sign Up</li>
-            <li>Log In</li>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
+            <li>
+              <Link to="/login">Log In</Link>
+            </li>
           </ul>
         </NavBar>
       </Container>
@@ -50,6 +55,15 @@ const NavBar = styled.nav`
 
   & ul li {
     list-style: none;
+  }
+
+  & ul li a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.darkblue};
+  }
+
+  & ul li a:hover {
+    text-decoration: underline;
   }
 `;
 
