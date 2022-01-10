@@ -33,7 +33,7 @@ const LandingWrapper = styled.main`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-top: 20vh;
   align-items: center;
   height: 100%;
   max-width: ${({ theme }) => theme.widths.content};

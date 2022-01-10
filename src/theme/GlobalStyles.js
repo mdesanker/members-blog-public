@@ -19,6 +19,10 @@ const GlobalStyles = createGlobalStyle`
     position: relative;
     min-height: 100vh;
   }
+
+  main {
+    padding-top: 60px;
+  }
 `;
 
 export default GlobalStyles;
