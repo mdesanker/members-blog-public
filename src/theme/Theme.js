@@ -1,6 +1,6 @@
 const Theme = {
   colors: {
-    primary: "blue",
+    primary: "#264653",
     secondary: "green",
     lightgray: "#efefef",
   },
@@ -10,7 +10,7 @@ const Theme = {
     large: "0 4px 8px rgba(0, 0, 0, 0.2)",
   },
   widths: {
-    content: "140rem",
+    content: "1000px",
   },
 };
 

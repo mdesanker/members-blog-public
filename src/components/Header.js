@@ -4,7 +4,13 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <Container>
-        <Logo>Reflection</Logo>
+        <Logo>Scratch</Logo>
+        <NavBar>
+          <ul>
+            <li>Sign Up</li>
+            <li>Log In</li>
+          </ul>
+        </NavBar>
       </Container>
     </HeaderWrapper>
   );
@@ -30,6 +36,18 @@ const Logo = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 2rem;
   letter-spacing: 0.2rem;
+  text-decoration: line-through;
+`;
+
+const NavBar = styled.nav`
+  & ul {
+    display: flex;
+    gap: 1rem;
+  }
+
+  & ul li {
+    list-style: none;
+  }
 `;
 
 export default Header;
