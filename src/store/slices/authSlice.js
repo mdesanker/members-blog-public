@@ -1,5 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
+// // Fetch all posts thunk
+export const fetchAllPosts = createAsyncThunk("posts/getAll", async () => {
+  try {
+    console.log("fetching");
+    const res = await axios.get("http://localhost:5000/api/post/all");
+    console.log(res.data);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -11,29 +22,8 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    signup_success: (state, action) => {
-      localStorage.setItem("token", action.payload.token);
-      return {
-        ...state,
-        ...action.payload,
-        isAuthenticated: true,
-        loading: false,
-      };
-    },
-    signup_fail: (state, action) => {
-      localStorage.removeItem("token");
-      return {
-        ...state,
-        token: null,
-        isAuthenticated: false,
-        loading: false,
-      };
-    },
-  },
+  reducers: {},
 });
-
-const loginUser = ({ username, password }) => {};
 
 export const {} = authSlice.actions;
 
