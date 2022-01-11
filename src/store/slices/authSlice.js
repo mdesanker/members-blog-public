@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -31,6 +32,8 @@ const authSlice = createSlice({
     },
   },
 });
+
+const loginUser = ({ username, password }) => {};
 
 export const {} = authSlice.actions;
 
