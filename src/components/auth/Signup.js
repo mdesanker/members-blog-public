@@ -39,7 +39,7 @@ const Signup = () => {
       dispatch(
         setAlert({
           msg: "Passwords do not match",
-          alertType: "danger",
+          alertType: "red",
         })
       );
     } else {
@@ -47,10 +47,17 @@ const Signup = () => {
     }
   };
 
+  const alerts = useSelector((state) => state.alerts);
+
   return (
     <SignupWrapper>
       <ContentContainer>
-        <Alert text="Passwords do not match" color="red" />
+        {alerts.length > 0 &&
+          alerts.map((alert) => {
+            return (
+              <Alert key={alert.id} text={alert.msg} color={alert.alertType} />
+            );
+          })}
         <Card margin="1rem">
           <Title>Sign Up</Title>
           <FormDescription>

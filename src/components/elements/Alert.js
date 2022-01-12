@@ -13,7 +13,7 @@ const AlertWrapper = styled.div`
   background-color: ${(props) => props.color};
   border-radius: 5px;
   width: 90%;
-  margin: 1rem;
+  margin: 0.5rem;
 `;
 
 export default Alert;
