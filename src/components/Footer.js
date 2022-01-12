@@ -13,7 +13,7 @@ const FooterWrapper = styled.footer`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 30px;
+  height: ${({ theme }) => theme.heights.footer};
   background-color: white;
   position: absolute;
   bottom: 0;

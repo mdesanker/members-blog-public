@@ -16,6 +16,7 @@ const Theme = {
   },
   heights: {
     header: "60px",
+    footer: "30px",
   },
 };
 

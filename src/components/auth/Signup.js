@@ -9,6 +9,7 @@ import FormSmallText from "../elements/FormSmallText";
 import FormDescription from "../elements/FormDescription";
 import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../store/slices/alertSlice";
+import Alert from "../elements/Alert";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -48,8 +49,9 @@ const Signup = () => {
 
   return (
     <SignupWrapper>
-      <Container>
-        <Card>
+      <ContentContainer>
+        <Alert text="Passwords do not match" color="red" />
+        <Card margin="1rem">
           <Title>Sign Up</Title>
           <FormDescription>
             <i className="fas fa-user" />
@@ -95,7 +97,7 @@ const Signup = () => {
             Already have an account? <Link to="/login">Log In</Link>
           </FormSmallText>
         </Card>
-      </Container>
+      </ContentContainer>
     </SignupWrapper>
   );
 };

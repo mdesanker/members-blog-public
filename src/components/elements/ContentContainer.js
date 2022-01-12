@@ -8,6 +8,7 @@ const ContentContainer = styled.div`
   height: 100%;
   max-width: ${({ theme }) => theme.widths.content};
   padding-top: ${({ theme }) => theme.heights.header};
+  padding-bottom: ${({ theme }) => theme.heights.footer};
   margin: 0 auto;
 `;
 

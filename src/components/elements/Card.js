@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const Card = ({ children }) => {
-  return <CardWrapper>{children}</CardWrapper>;
+const Card = ({ children, margin }) => {
+  return <CardWrapper margin={margin}>{children}</CardWrapper>;
 };
 
 const CardWrapper = styled.div`
@@ -10,6 +10,7 @@ const CardWrapper = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.large};
   display: flex;
   flex-direction: column;
+  margin: ${(props) => (props.margin ? `${props.margin}` : "0")};
 `;
 
 export default Card;
