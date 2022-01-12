@@ -6,7 +6,8 @@ const Test = () => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {
-    dispatch(fetchAllPosts());
+    // dispatch(fetchAllPosts());
+    dispatch(createUserPost({ username: "greg", password: "password" }));
   };
 
   return (

@@ -12,6 +12,32 @@ export const fetchAllPosts = createAsyncThunk("posts/getAll", async () => {
   }
 });
 
+// Fetch user thunk
+export const createUserPost = createAsyncThunk(
+  "users/createUserPost",
+  async (newUser) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(newUser);
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/user/",
+        body,
+        config
+      );
+
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+);
+
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
