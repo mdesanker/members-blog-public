@@ -10,6 +10,7 @@ import FormDescription from "../elements/FormDescription";
 import { useDispatch, useSelector } from "react-redux";
 import { setAlert, timedError } from "../../store/slices/alertSlice";
 import Alert from "../elements/Alert";
+import { signupUser } from "../../store/slices/userSlice";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const Signup = () => {
       );
     } else {
       console.log(formData);
+      dispatch(signupUser(formData));
     }
   };
 
