@@ -7,8 +7,12 @@ import Title from "../elements/Title";
 import Card from "../elements/Card";
 import FormSmallText from "../elements/FormSmallText";
 import FormDescription from "../elements/FormDescription";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/slices/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -29,6 +33,7 @@ const Login = () => {
   const formSubmitHandler = (e) => {
     e.preventDefault();
     console.log(formData);
+    dispatch(loginUser(formData));
   };
 
   return (
