@@ -7,8 +7,12 @@ import Title from "../elements/Title";
 import Card from "../elements/Card";
 import FormSmallText from "../elements/FormSmallText";
 import FormDescription from "../elements/FormDescription";
+import { useDispatch, useSelector } from "react-redux";
+import { setAlert } from "../../store/slices/alertSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -31,6 +35,12 @@ const Signup = () => {
     e.preventDefault();
     if (password !== password2) {
       console.log("Passwords do not match");
+      dispatch(
+        setAlert({
+          msg: "Passwords do not match",
+          alertType: "danger",
+        })
+      );
     } else {
       console.log(formData);
     }
