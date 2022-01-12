@@ -1,18 +1,13 @@
 import ContentContainer from "../components/elements/ContentContainer";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createUserPost,
-  fetchAllPosts,
-  loginUserPost,
-} from "../store/slices/authSlice";
+import { createUser, loginUser } from "../store/slices/authSlice";
 
 const Test = () => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {
-    // dispatch(fetchAllPosts());
-    // dispatch(createUserPost({ username: "greg", password: "password" }));
-    dispatch(loginUserPost({ username: "mickhael", password: "password" }));
+    // dispatch(createUser({ username: "greg", password: "password" }));
+    dispatch(loginUser({ username: "michael", password: "password" }));
   };
 
   return (

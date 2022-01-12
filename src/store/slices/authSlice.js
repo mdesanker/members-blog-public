@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Create user thunk
-export const createUserPost = createAsyncThunk(
+export const createUser = createAsyncThunk(
   "user/createUser",
   async (newUser) => {
     const config = {
@@ -20,7 +20,7 @@ export const createUserPost = createAsyncThunk(
         config
       );
 
-      console.log(res.data);
+      return res.data;
     } catch (err) {
       console.error(err.response.data);
     }
@@ -28,30 +28,27 @@ export const createUserPost = createAsyncThunk(
 );
 
 // Login user thunk
-export const loginUserPost = createAsyncThunk(
-  "user/loginUser",
-  async (user) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+export const loginUser = createAsyncThunk("user/loginUser", async (user) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
-    const body = JSON.stringify(user);
+  const body = JSON.stringify(user);
 
-    try {
-      const res = await axios.post(
-        "http://localhost:5000/api/user/login",
-        body,
-        config
-      );
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/api/user/login",
+      body,
+      config
+    );
 
-      console.log(res.data);
-    } catch (err) {
-      console.error(err.response.data);
-    }
+    return res.data;
+  } catch (err) {
+    console.error(err.response.data);
   }
-);
+});
 
 const initialState = {
   token: localStorage.getItem("token"),
@@ -64,6 +61,18 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      localStorage.setItem("token", action.payload.token);
+      state.isAuthenticated = true;
+      state.loading = false;
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      localStorage.setItem("token", action.payload.token);
+      state.isAuthenticated = true;
+      state.loading = false;
+    });
+  },
 });
 
 export const {} = authSlice.actions;
