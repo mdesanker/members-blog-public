@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import setAuthToken from "../../utils/setAuthToken";
 
 export const signupUser = createAsyncThunk(
   "user/signupUser",
@@ -63,28 +64,28 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const fetchUserByToken = createAsyncThunk(
-  "user/fetchUserByToken",
-  async ({ token }, thunkAPI) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": token,
-      },
-    };
-
-    try {
-      const res = await axios.get(
-        "http://localhost:5000/api/user/detail",
-        config
-      );
-      console.log(res.data);
-    } catch (err) {
-      console.error(err.message);
-      thunkAPI.rejectWithValue(err.res.data);
-    }
+export const loadUser = createAsyncThunk("user/loadUser", async (thunkAPI) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
   }
-);
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await axios.get(
+      "http://localhost:5000/api/user/detail",
+      config
+    );
+    console.log(res.data);
+  } catch (err) {
+    console.error(err.message);
+    thunkAPI.rejectWithValue(err.res.data);
+  }
+});
 
 const initialState = {
   user: null,
