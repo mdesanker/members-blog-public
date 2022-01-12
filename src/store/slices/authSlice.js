@@ -1,20 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// // Fetch all posts thunk
-export const fetchAllPosts = createAsyncThunk("posts/getAll", async () => {
-  try {
-    console.log("fetching");
-    const res = await axios.get("http://localhost:5000/api/post/all");
-    console.log(res.data);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
-// Fetch user thunk
+// Create user thunk
 export const createUserPost = createAsyncThunk(
-  "users/createUserPost",
+  "user/createUser",
   async (newUser) => {
     const config = {
       headers: {
@@ -33,7 +22,33 @@ export const createUserPost = createAsyncThunk(
 
       console.log(res.data);
     } catch (err) {
-      console.error(err.message);
+      console.error(err.response.data);
+    }
+  }
+);
+
+// Login user thunk
+export const loginUserPost = createAsyncThunk(
+  "user/loginUser",
+  async (user) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify(user);
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/user/login",
+        body,
+        config
+      );
+
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.response.data);
     }
   }
 );
