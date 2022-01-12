@@ -28,7 +28,7 @@ export const signupUser = createAsyncThunk(
       }
     } catch (err) {
       console.error(err.response.data);
-      return thunkAPI.rejectWithValue(err.res.data);
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   }
 );
@@ -58,8 +58,8 @@ export const loginUser = createAsyncThunk(
         return thunkAPI.rejectWithValue(res.data);
       }
     } catch (err) {
-      console.error(err.message);
-      thunkAPI.rejectWithValue(err.res.data);
+      console.error(err.response.data);
+      thunkAPI.rejectWithValue(err.response.data);
     }
   }
 );
@@ -80,19 +80,18 @@ export const loadUser = createAsyncThunk("user/loadUser", async (thunkAPI) => {
       "http://localhost:5000/api/user/detail",
       config
     );
-    console.log(res.data);
+    return res.data;
   } catch (err) {
-    console.error(err.message);
-    thunkAPI.rejectWithValue(err.res.data);
+    console.error(err.response.data);
+    thunkAPI.rejectWithValue(err.response.data);
   }
 });
 
 const initialState = {
+  token: localStorage.getItem("token"),
+  isAuthenticated: null,
+  loading: true,
   user: null,
-  isFetching: false,
-  isSuccess: false,
-  isError: false,
-  errorMessage: "",
 };
 
 const userSlice = createSlice({
@@ -101,8 +100,40 @@ const userSlice = createSlice({
   reducers: {
     // Reducers
   },
-  extraReducers: {
-    // Extra reducers
+  extraReducers: (builder) => {
+    builder.addCase(signupUser.fulfilled, (state, actions) => {
+      localStorage.setItem("token", actions.payload);
+      state.isAuthenticated = true;
+      state.loading = false;
+    });
+    builder.addCase(signupUser.rejected, (state, actions) => {
+      localStorage.removeItem("token");
+      state.isAuthenticated = false;
+      state.loading = false;
+      state.user = null;
+    });
+    builder.addCase(loginUser.fulfilled, (state, actions) => {
+      localStorage.setItem("token", actions.payload);
+      state.isAuthenticated = true;
+      state.loading = false;
+    });
+    builder.addCase(loginUser.rejected, (state, actions) => {
+      localStorage.removeItem("token");
+      state.isAuthenticated = false;
+      state.loading = false;
+      state.user = null;
+    });
+    builder.addCase(loadUser.fulfilled, (state, actions) => {
+      state.user = actions.payload;
+      state.isAuthenticated = true;
+      state.loading = false;
+    });
+    builder.addCase(loadUser.rejected, (state, actions) => {
+      localStorage.removeItem("token");
+      state.isAuthenticated = false;
+      state.loading = false;
+      state.user = null;
+    });
   },
 });
 
