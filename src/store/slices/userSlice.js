@@ -63,6 +63,29 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const fetchUserByToken = createAsyncThunk(
+  "user/fetchUserByToken",
+  async ({ token }, thunkAPI) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+    };
+
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/api/user/detail",
+        config
+      );
+      console.log(res.data);
+    } catch (err) {
+      console.error(err.message);
+      thunkAPI.rejectWithValue(err.res.data);
+    }
+  }
+);
+
 const initialState = {
   user: null,
   isFetching: false,
