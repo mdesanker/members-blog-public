@@ -1,6 +1,6 @@
 import ContentContainer from "../components/elements/ContentContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser, loginUser } from "../store/slices/authSlice";
+// import { createUser, loginUser } from "../store/slices/authSlice";
 import { removeAlert, timedError } from "../store/slices/alertSlice";
 import Alert from "../components/elements/Alert";
 
@@ -9,7 +9,7 @@ const Test = () => {
 
   const clickHandler = () => {
     // dispatch(createUser({ username: "greg", password: "password" }));
-    dispatch(loginUser({ username: "michael", password: "password" }));
+    // dispatch(loginUser({ username: "michael", password: "password" }));
     dispatch(
       timedError({
         msg: "Passwords do not match",
