@@ -46,7 +46,6 @@ const Signup = () => {
         })
       );
     } else {
-      console.log(formData);
       dispatch(signupUser(formData));
     }
   };
