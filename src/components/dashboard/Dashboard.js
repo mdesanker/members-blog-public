@@ -1,8 +1,13 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { fetchAllPosts } from "../../store/slices/postsSlice";
 import BlogPostCard from "../elements/BlogPostCard";
 import Title from "../elements/Title";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
   const post = {
     id: "sdgho39",
     author: "Michael",
@@ -12,6 +17,11 @@ const Dashboard = () => {
     likes: 27,
     date: "Jan 13, 2022",
   };
+
+  useEffect(() => {
+    console.log("Fetching posts...");
+    dispatch(fetchAllPosts());
+  }, []);
 
   return (
     <DashboardWrapper>
