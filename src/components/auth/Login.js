@@ -42,12 +42,12 @@ const Login = () => {
 
   return (
     <LoginWrapper>
-      <Container>
+      <ContentContainer>
         {alerts.length > 0 &&
           alerts.map((alert) => {
             return <Alert key={alert.id} text={alert.msg} color="red" />;
           })}
-        <Card>
+        <Card margin="2rem">
           <Title>Log In</Title>
           <FormDescription>
             <i className="fas fa-user" />
@@ -82,16 +82,12 @@ const Login = () => {
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </FormSmallText>
         </Card>
-      </Container>
+      </ContentContainer>
     </LoginWrapper>
   );
 };
 
 const LoginWrapper = styled.main``;
-
-const Container = styled(ContentContainer)`
-  padding-top: 20vh;
-`;
 
 const Form = styled.form`
   display: flex;

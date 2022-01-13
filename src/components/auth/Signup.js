@@ -57,7 +57,7 @@ const Signup = () => {
           alerts.map((alert) => {
             return <Alert key={alert.id} text={alert.msg} color="red" />;
           })}
-        <Card margin="1rem">
+        <Card margin="2rem">
           <Title>Sign Up</Title>
           <FormDescription>
             <i className="fas fa-user" />
