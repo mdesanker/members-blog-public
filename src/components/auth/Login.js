@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BasicBtn from "../elements/BasicBtn";
 import ContentContainer from "../elements/ContentContainer";
@@ -12,7 +12,9 @@ import { loginUser } from "../../store/slices/userSlice";
 import Alert from "../elements/Alert";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -38,7 +40,12 @@ const Login = () => {
   };
 
   const alerts = useSelector((state) => state.alerts);
-  console.log(alerts);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      return navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   return (
     <LoginWrapper>

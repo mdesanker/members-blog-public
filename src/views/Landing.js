@@ -1,9 +1,21 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import LinkBtn from "../components/elements/LinkBtn";
 import ContentContainer from "../components/elements/ContentContainer";
 import Background from "../images/landing.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      return navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
+
   return (
     <LandingWrapper>
       <LandingContainer>

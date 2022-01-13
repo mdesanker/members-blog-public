@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BasicBtn from "../elements/BasicBtn";
 import ContentContainer from "../elements/ContentContainer";
@@ -11,9 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { timedError } from "../../store/slices/alertSlice";
 import Alert from "../elements/Alert";
 import { signupUser } from "../../store/slices/userSlice";
+import { useEffect } from "react";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -49,6 +52,12 @@ const Signup = () => {
   };
 
   const alerts = useSelector((state) => state.alerts);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      return navigate("/dashboard");
+    }
+  }, [isAuthenticated]);
 
   return (
     <SignupWrapper>

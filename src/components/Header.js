@@ -15,7 +15,7 @@ const Header = () => {
   const authLinks = (
     <ul>
       <li>
-        <Link onClick={logoutHandler} to="/login">
+        <Link onClick={logoutHandler} to="/">
           <i className="fas fa-sign-out-alt" /> Log Out
         </Link>
       </li>
