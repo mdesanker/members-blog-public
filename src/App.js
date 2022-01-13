@@ -9,6 +9,7 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import store from "./store/store";
 import { loadUser } from "./store/slices/userSlice";
+import PrivateRoute from "./routing/PrivateRoute";
 
 const App = () => {
   useEffect(() => {
@@ -23,7 +24,14 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </Fragment>
