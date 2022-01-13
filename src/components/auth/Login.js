@@ -7,8 +7,9 @@ import Title from "../elements/Title";
 import Card from "../elements/Card";
 import FormSmallText from "../elements/FormSmallText";
 import FormDescription from "../elements/FormDescription";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/slices/userSlice";
+import Alert from "../elements/Alert";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -36,9 +37,16 @@ const Login = () => {
     dispatch(loginUser(formData));
   };
 
+  const alerts = useSelector((state) => state.alerts);
+  console.log(alerts);
+
   return (
     <LoginWrapper>
       <Container>
+        {alerts.length > 0 &&
+          alerts.map((alert) => {
+            return <Alert key={alert.id} text={alert.msg} color="red" />;
+          })}
         <Card>
           <Title>Log In</Title>
           <FormDescription>
