@@ -28,7 +28,10 @@ export const signupUser = createAsyncThunk(
         return thunkAPI.rejectWithValue(res.data);
       }
     } catch (err) {
-      console.error(err.response.data);
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
+      }
       return thunkAPI.rejectWithValue(err.response.data);
     }
   }
@@ -61,9 +64,8 @@ export const loginUser = createAsyncThunk(
       }
     } catch (err) {
       const errors = err.response.data.errors;
-      console.error(errors);
       if (errors) {
-        thunkAPI.dispatch(timedError(...errors));
+        errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
       }
       thunkAPI.rejectWithValue(err.response.data);
     }

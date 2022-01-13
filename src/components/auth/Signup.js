@@ -8,7 +8,7 @@ import Card from "../elements/Card";
 import FormSmallText from "../elements/FormSmallText";
 import FormDescription from "../elements/FormDescription";
 import { useDispatch, useSelector } from "react-redux";
-import { setAlert, timedError } from "../../store/slices/alertSlice";
+import { timedError } from "../../store/slices/alertSlice";
 import Alert from "../elements/Alert";
 import { signupUser } from "../../store/slices/userSlice";
 
@@ -55,9 +55,7 @@ const Signup = () => {
       <ContentContainer>
         {alerts.length > 0 &&
           alerts.map((alert) => {
-            return (
-              <Alert key={alert.id} text={alert.msg} color={alert.alertType} />
-            );
+            return <Alert key={alert.id} text={alert.msg} color="red" />;
           })}
         <Card margin="1rem">
           <Title>Sign Up</Title>
@@ -111,10 +109,6 @@ const Signup = () => {
 };
 
 const SignupWrapper = styled.main``;
-
-const Container = styled(ContentContainer)`
-  padding-top: 20vh;
-`;
 
 const Form = styled.form`
   display: flex;
