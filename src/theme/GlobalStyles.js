@@ -22,6 +22,8 @@ const GlobalStyles = createGlobalStyle`
 
   main {
     min-height: 100vh;
+    padding-top: ${({ theme }) => theme.heights.header};
+    padding-bottom: ${({ theme }) => theme.heights.footer};
     width: 100%;
   }
 `;

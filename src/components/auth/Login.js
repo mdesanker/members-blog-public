@@ -14,7 +14,7 @@ import Alert from "../elements/Alert";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.user.isAuthenticated);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -42,10 +42,12 @@ const Login = () => {
   const alerts = useSelector((state) => state.alerts);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      return navigate("/dashboard");
+    if (auth) {
+      console.log(auth);
+      console.log("Redirecting...");
+      navigate("/dashboard");
     }
-  }, [isAuthenticated]);
+  }, [auth]);
 
   return (
     <LoginWrapper>

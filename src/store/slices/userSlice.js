@@ -67,7 +67,7 @@ export const loginUser = createAsyncThunk(
       if (errors) {
         errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
       }
-      thunkAPI.rejectWithValue(err.response.data);
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   }
 );
@@ -85,7 +85,7 @@ export const loadUser = createAsyncThunk("user/loadUser", async (thunkAPI) => {
     if (errors) {
       errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
     }
-    thunkAPI.rejectWithValue(err.response.data);
+    return thunkAPI.rejectWithValue(err.response.data);
   }
 });
 

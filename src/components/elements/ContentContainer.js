@@ -7,8 +7,8 @@ const ContentContainer = styled.div`
   justify-content: center;
   height: 100%;
   max-width: ${({ theme }) => theme.widths.content};
-  padding-top: ${({ theme }) => theme.heights.header};
-  padding-bottom: ${({ theme }) => theme.heights.footer};
+  // padding-top: ${({ theme }) => theme.heights.header};
+  // padding-bottom: ${({ theme }) => theme.heights.footer};
   margin: 0 auto;
 `;
 

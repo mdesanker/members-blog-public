@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Dashboard = () => {
-  return <DashboardWrapper></DashboardWrapper>;
+  return <DashboardWrapper>Dashboard</DashboardWrapper>;
 };
 
 const DashboardWrapper = styled.main``;
