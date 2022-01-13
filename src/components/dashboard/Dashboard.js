@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ContentContainer from "../elements/ContentContainer";
 import BlogPostCard from "../elements/BlogPostCard";
 import Title from "../elements/Title";
 
@@ -17,13 +16,26 @@ const Dashboard = () => {
   return (
     <DashboardWrapper>
       <Title>Posts</Title>
-      <ContentContainer>
+      <PostContainer>
         <BlogPostCard post={post} />
-      </ContentContainer>
+        <BlogPostCard post={post} />
+        <BlogPostCard post={post} />
+        <BlogPostCard post={post} />
+        <BlogPostCard post={post} />
+      </PostContainer>
     </DashboardWrapper>
   );
 };
 
 const DashboardWrapper = styled.main``;
+
+const PostContainer = styled.div`
+  margin: 40px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: space-between;
+  max-width: ${({ theme }) => theme.widths.content};
+`;
 
 export default Dashboard;

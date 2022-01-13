@@ -22,13 +22,15 @@ const BlogPostCard = ({ post }) => {
 const PostWrapper = styled(Link)`
   text-decoration: none;
   color: black;
+  margin-bottom: 2rem;
 `;
 
 const PostCard = styled.div`
   background-color: white;
   padding: 10px 12px 16px;
-  width: 300px;
-  // height: 150px;
+  min-width: 300px;
+  width: 35vw;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   margin: ${(props) => (props.margin ? `${props.margin}` : "0")};
