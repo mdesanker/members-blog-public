@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { fetchAllPosts } from "../../store/slices/postsSlice";
@@ -7,6 +8,8 @@ import Title from "../elements/Title";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const { posts } = useSelector((state) => state.posts);
+  console.log(posts);
 
   const post = {
     id: "sdgho39",
@@ -19,7 +22,6 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    console.log("Fetching posts...");
     dispatch(fetchAllPosts());
   }, []);
 
@@ -27,11 +29,11 @@ const Dashboard = () => {
     <DashboardWrapper>
       <Title>Posts</Title>
       <PostContainer>
-        <BlogPostCard post={post} />
-        <BlogPostCard post={post} />
-        <BlogPostCard post={post} />
-        <BlogPostCard post={post} />
-        <BlogPostCard post={post} />
+        {posts.length > 0 &&
+          posts.map((post) => {
+            console.log(post._id);
+            return <BlogPostCard post={post} />;
+          })}
       </PostContainer>
     </DashboardWrapper>
   );

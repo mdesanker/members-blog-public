@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const BlogPostCard = ({ post }) => {
-  const { id, title, author, content, date, likes } = post;
+  const { _id, title, author, content, date } = post;
 
   return (
-    <PostWrapper to={`/dashboard/${id}`}>
+    <PostWrapper to={`/dashboard/${_id}`}>
       <PostCard>
         <PostTitle>{title}</PostTitle>
-        <PostAuthor>{author}</PostAuthor>
+        <PostAuthor>{author.username}</PostAuthor>
         <PostDetails>
           <p>{date}</p>
-          <p>{likes} likes</p>
+          {/* <p>{likes} likes</p> */}
         </PostDetails>
         <ContentSample>{content}</ContentSample>
       </PostCard>
