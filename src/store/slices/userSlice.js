@@ -100,7 +100,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // Reducers
+    logout: (state, actions) => {
+      localStorage.removeItem("token");
+      state.token = null;
+      state.isAuthenticated = false;
+      state.loading = false;
+      state.user = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(signupUser.fulfilled, (state, actions) => {
@@ -110,6 +116,7 @@ const userSlice = createSlice({
     });
     builder.addCase(signupUser.rejected, (state, actions) => {
       localStorage.removeItem("token");
+      state.token = null;
       state.isAuthenticated = false;
       state.loading = false;
       state.user = null;
@@ -121,6 +128,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, actions) => {
       localStorage.removeItem("token");
+      state.token = null;
       state.isAuthenticated = false;
       state.loading = false;
       state.user = null;
@@ -132,6 +140,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loadUser.rejected, (state, actions) => {
       localStorage.removeItem("token");
+      state.token = null;
       state.isAuthenticated = false;
       state.loading = false;
       state.user = null;

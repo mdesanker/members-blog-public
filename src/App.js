@@ -8,7 +8,6 @@ import Dashboard from "./views/Dashboard";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import Test from "./views/Test";
-import setAuthToken from "./utils/setAuthToken";
 import store from "./store/store";
 import { loadUser } from "./store/slices/userSlice";
 
