@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import GlobalStyles from "./theme/GlobalStyles";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
@@ -8,8 +8,15 @@ import Dashboard from "./views/Dashboard";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import Test from "./views/Test";
+import setAuthToken from "./utils/setAuthToken";
+import store from "./store/store";
+import { loadUser } from "./store/slices/userSlice";
 
 const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Fragment>
       <GlobalStyles />

@@ -77,20 +77,14 @@ export const loadUser = createAsyncThunk("user/loadUser", async (thunkAPI) => {
     setAuthToken(localStorage.token);
   }
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   try {
-    const res = await axios.get(
-      "http://localhost:5000/api/user/detail",
-      config
-    );
+    const res = await axios.get("http://localhost:5000/api/user/detail");
     return res.data;
   } catch (err) {
-    console.error(err.response.data);
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
+    }
     thunkAPI.rejectWithValue(err.response.data);
   }
 });
