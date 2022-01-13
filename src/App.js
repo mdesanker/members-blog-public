@@ -24,14 +24,15 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route
+        {/* <Route
           path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
-        />
+        /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </Fragment>
