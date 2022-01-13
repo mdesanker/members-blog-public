@@ -3,11 +3,10 @@ import GlobalStyles from "./theme/GlobalStyles";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Landing from "./views/Landing";
-import Dashboard from "./views/Dashboard";
+import Landing from "./components/landing/Landing";
+import Dashboard from "./components/dashboard/Dashboard";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
-import Test from "./views/Test";
 import store from "./store/store";
 import { loadUser } from "./store/slices/userSlice";
 
@@ -25,7 +24,6 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Dashboard />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
       <Footer />
     </Fragment>
