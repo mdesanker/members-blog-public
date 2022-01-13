@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slices/userSlice";
+import { Fragment } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.user.isAuthenticated);
+  const { isAuthenticated, loading } = useSelector((state) => state.user);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -15,7 +16,7 @@ const Header = () => {
     <ul>
       <li>
         <Link onClick={logoutHandler} to="/login">
-          Log Out
+          <i className="fas fa-sign-out-alt" /> Log Out
         </Link>
       </li>
     </ul>
@@ -36,7 +37,11 @@ const Header = () => {
     <HeaderWrapper>
       <Container>
         <Logo to="/">Scratch</Logo>
-        <NavBar>{auth ? authLinks : guestLinks}</NavBar>
+        <NavBar>
+          {!loading && (
+            <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+          )}
+        </NavBar>
       </Container>
     </HeaderWrapper>
   );
