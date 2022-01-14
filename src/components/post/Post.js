@@ -13,7 +13,7 @@ const Post = () => {
   const post = useSelector((state) => state.posts.post);
   console.log(post);
 
-  const { title, author, date, content } = post;
+  const { title, author, date, content, likes } = post;
 
   const dateFormat = DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
 
@@ -26,8 +26,14 @@ const Post = () => {
       <Container>
         <PostTitle>{post && title}</PostTitle>
         <PostDetails>
-          <PostAuthor>{post && author.username}</PostAuthor>
-          <PostDate>{post && dateFormat}</PostDate>
+          <DetailSection>
+            <PostAuthor>{post && author.username}</PostAuthor>
+            <PostDate>{post && dateFormat}</PostDate>
+          </DetailSection>
+          <PostLikes>
+            {post && likes.length}
+            <i className="far fa-thumbs-up" />
+          </PostLikes>
         </PostDetails>
         <PostContent>{post && content}</PostContent>
       </Container>
@@ -54,6 +60,11 @@ const PostDetails = styled.div`
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   display: flex;
+  justify-content: space-between;
+`;
+
+const DetailSection = styled.div`
+  display: flex;
   flex-direction: column;
   gap: 5px;
 `;
@@ -64,6 +75,19 @@ const PostAuthor = styled.p`
 
 const PostDate = styled.p`
   color: gray;
+`;
+
+const PostLikes = styled.button`
+  font-size: 1rem;
+  color: gray;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 `;
 
 const PostContent = styled.p`
