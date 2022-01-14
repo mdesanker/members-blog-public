@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { fetchAllPosts } from "../../store/slices/postsSlice";
+import { fetchAllPosts, fetchPostById } from "../../store/slices/postsSlice";
 import BlogPostCard from "../elements/BlogPostCard";
 import Title from "../elements/Title";
 
@@ -23,6 +23,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(fetchAllPosts());
+    dispatch(fetchPostById({ id: "61e0d57d1680fe1d92ccd641" }));
   }, []);
 
   return (
