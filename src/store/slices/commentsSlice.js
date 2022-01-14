@@ -29,6 +29,7 @@ const commentsSlice = createSlice({
   name: "comments",
   initialState,
   reducers: {},
+  extraReducers: (builders) => {},
 });
 
 // export const {} = commentsSlice.actions;
