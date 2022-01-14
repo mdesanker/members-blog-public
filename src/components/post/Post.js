@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchPostById } from "../../store/slices/postsSlice";
 import { DateTime } from "luxon";
+import Comments from "./Comments";
 
 const Post = () => {
   const { id } = useParams();
@@ -13,9 +14,8 @@ const Post = () => {
   const post = useSelector((state) => state.posts.post);
   console.log(post);
 
-  const { title, author, date, content, likes } = post;
-
-  const dateFormat = DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
+  const dateFormat =
+    post && DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED);
 
   useEffect(() => {
     dispatch(fetchPostById({ id: id }));
@@ -24,18 +24,19 @@ const Post = () => {
   return (
     <PostWrapper>
       <Container>
-        <PostTitle>{post && title}</PostTitle>
+        <PostTitle>{post && post.title}</PostTitle>
         <PostDetails>
           <DetailSection>
-            <PostAuthor>{post && author.username}</PostAuthor>
+            <PostAuthor>{post && post.author.username}</PostAuthor>
             <PostDate>{post && dateFormat}</PostDate>
           </DetailSection>
           <PostLikes>
-            {post && likes.length}
+            {post && post.likes.length}
             <i className="far fa-thumbs-up" />
           </PostLikes>
         </PostDetails>
-        <PostContent>{post && content}</PostContent>
+        <PostContent>{post && post.content}</PostContent>
+        <Comments />
       </Container>
     </PostWrapper>
   );
@@ -43,7 +44,7 @@ const Post = () => {
 
 const PostWrapper = styled.main``;
 
-const Container = styled.div`
+const Container = styled.section`
   width: 80%;
   max-width: ${({ theme }) => theme.widths.content};
   margin: 0 auto;
@@ -91,7 +92,7 @@ const PostLikes = styled.button`
 `;
 
 const PostContent = styled.p`
-  margin-top: 30px;
+  margin: 30px 0 50px;
   line-height: 1.5;
   text-align: justify;
 `;
