@@ -46,7 +46,11 @@ const initialState = {
 const postSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    clearPost: (state, actions) => {
+      state.post = null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchAllPosts.fulfilled, (state, actions) => {
       state.posts = actions.payload;
@@ -63,6 +67,6 @@ const postSlice = createSlice({
   },
 });
 
-// export const {} = postSlice.actions;
+export const { clearPost } = postSlice.actions;
 
 export default postSlice.reducer;
