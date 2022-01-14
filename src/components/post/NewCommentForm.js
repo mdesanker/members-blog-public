@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { createComment } from "../../store/slices/commentsSlice";
+import {
+  createComment,
+  fetchCommentsByPostId,
+} from "../../store/slices/commentsSlice";
 
 const NewCommentForm = ({ toggleForm }) => {
   const { id } = useParams();

@@ -42,7 +42,7 @@ export const createComment = createAsyncThunk(
         body,
         config
       );
-      console.log(res.data);
+      return res.data;
     } catch (err) {
       const errors = err.response.data.errors;
       console.log(errors);
@@ -73,6 +73,10 @@ const commentsSlice = createSlice({
     builder.addCase(fetchCommentsByPostId.rejected, (state, actions) => {
       state.comments = [];
       state.commentCount = 0;
+    });
+    builder.addCase(createComment.fulfilled, (state, actions) => {
+      state.comments.push(actions.payload);
+      state.commentCount++;
     });
   },
 });
