@@ -23,6 +23,39 @@ export const fetchCommentsByPostId = createAsyncThunk(
   }
 );
 
+// Create comment for post form user
+export const createComment = createAsyncThunk(
+  "comment/createComment",
+  async ({ content, post }, thunkAPI) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ content, post });
+
+    try {
+      console.log(content);
+      const res = await axios.post(
+        "http://localhost:5000/api/comment/create",
+        body,
+        config
+      );
+      console.log(res.data);
+    } catch (err) {
+      const errors = err.response.data.errors;
+      console.log(errors);
+      if (errors) {
+        errors.forEach((error) => {
+          return thunkAPI.dispatch(timedError(error));
+        });
+      }
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   comments: [],
   commentCount: 0,

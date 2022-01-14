@@ -1,12 +1,18 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { createComment } from "../../store/slices/commentsSlice";
 
 const NewCommentForm = ({ toggleForm }) => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
-    comment: "",
+    content: "",
   });
 
-  const { comment } = formData;
+  const { content } = formData;
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -18,17 +24,20 @@ const NewCommentForm = ({ toggleForm }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     toggleForm();
-    console.log(formData);
+    const body = formData;
+    body.post = id;
+    console.log(body);
+    dispatch(createComment(body));
   };
 
   return (
     <FormWrapper onSubmit={submitHandler}>
       <Input
         type="text"
-        name="comment"
-        id="comment"
+        name="content"
+        id="content"
         placeholder="Leave your comment here..."
-        value={comment}
+        value={content}
         onChange={inputHandler}
       />
       <SubmitBtn type="submit">Comment</SubmitBtn>
