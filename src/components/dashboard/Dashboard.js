@@ -31,8 +31,7 @@ const Dashboard = () => {
       <PostContainer>
         {posts.length > 0 &&
           posts.map((post) => {
-            console.log(post._id);
-            return <BlogPostCard post={post} />;
+            return <BlogPostCard key={post._id} post={post} />;
           })}
       </PostContainer>
     </DashboardWrapper>

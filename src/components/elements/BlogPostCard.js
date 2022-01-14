@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { DateTime } from "luxon";
 
 const BlogPostCard = ({ post }) => {
   const { _id, title, author, content, date } = post;
 
+  const dateFormat = DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
+
   return (
-    <PostWrapper to={`/dashboard/${_id}`}>
+    <PostWrapper to={`/dashboard/post/${_id}`}>
       <PostCard>
         <PostTitle>{title}</PostTitle>
         <PostAuthor>{author.username}</PostAuthor>
         <PostDetails>
-          <p>{date}</p>
+          <p>{dateFormat}</p>
           {/* <p>{likes} likes</p> */}
         </PostDetails>
         <ContentSample>{content}</ContentSample>
