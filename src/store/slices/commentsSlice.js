@@ -10,7 +10,7 @@ export const fetchCommentsByPostId = createAsyncThunk(
       const res = await axios.get(
         `http://localhost:5000/api/comment/post/${id}`
       );
-      console.log(res.data);
+      return res.data;
     } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {
@@ -23,13 +23,25 @@ export const fetchCommentsByPostId = createAsyncThunk(
   }
 );
 
-const initialState = [];
+const initialState = {
+  comments: [],
+  commentCount: 0,
+};
 
 const commentsSlice = createSlice({
   name: "comments",
   initialState,
   reducers: {},
-  extraReducers: (builders) => {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchCommentsByPostId.fulfilled, (state, actions) => {
+      state.comments = actions.payload;
+      state.commentCount = actions.payload.length;
+    });
+    builder.addCase(fetchCommentsByPostId.rejected, (state, actions) => {
+      state.comments = [];
+      state.commentCount = 0;
+    });
+  },
 });
 
 // export const {} = commentsSlice.actions;

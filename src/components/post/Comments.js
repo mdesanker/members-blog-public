@@ -17,7 +17,9 @@ const Comments = () => {
 
   return (
     <CommentsWrapper>
-      <CommentHeader>Comments ({})</CommentHeader>
+      <CommentHeader>
+        Comments ({comments && comments.commentCount})
+      </CommentHeader>
     </CommentsWrapper>
   );
 };
