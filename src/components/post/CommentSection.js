@@ -20,7 +20,11 @@ const CommentSection = () => {
   return (
     <CommentsWrapper>
       <CommentHeader>
-        Comments ({comments && comments.commentCount})
+        <h1>Comments ({comments && comments.commentCount})</h1>
+        <AddCommentBtn>
+          <i className="fas fa-plus" />
+          Leave a Comment
+        </AddCommentBtn>
       </CommentHeader>
       <CommentContainer>
         {comments.comments.length === 0 && <p>No comments yet</p>}
@@ -35,10 +39,34 @@ const CommentSection = () => {
 
 const CommentsWrapper = styled.section``;
 
-const CommentHeader = styled.h1`
+const CommentHeader = styled.div`
   padding: 1rem;
   border: 1px solid lightgray;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const AddCommentBtn = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: ${({ theme }) => theme.colors.mediumblue};
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 2px solid ${({ theme }) => theme.colors.mediumblue};
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 200ms;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.darkblue};
+
+    border: 2px solid ${({ theme }) => theme.colors.darkblue};
+  }
 `;
 
 const CommentContainer = styled.div`
