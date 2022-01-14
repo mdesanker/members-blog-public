@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCommentsByPostId } from "../../store/slices/commentsSlice";
 import Comment from "./Comment";
+import NewCommentForm from "./NewCommentForm";
 
 const CommentSection = () => {
   const { id } = useParams();
@@ -26,6 +27,7 @@ const CommentSection = () => {
           Leave a Comment
         </AddCommentBtn>
       </CommentHeader>
+      <NewCommentForm />
       <CommentContainer>
         {comments.comments.length === 0 && <p>No comments yet</p>}
         {comments &&
