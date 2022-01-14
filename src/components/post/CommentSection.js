@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -10,9 +10,15 @@ import NewCommentForm from "./NewCommentForm";
 const CommentSection = () => {
   const { id } = useParams();
 
+  const [formVisible, setFormVisible] = useState(false);
+
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.comments);
   console.log(comments.comments);
+
+  const toggleFormHandler = () => {
+    setFormVisible(!formVisible);
+  };
 
   useEffect(() => {
     dispatch(fetchCommentsByPostId({ id: id }));
@@ -22,12 +28,12 @@ const CommentSection = () => {
     <CommentsWrapper>
       <CommentHeader>
         <h1>Comments ({comments && comments.commentCount})</h1>
-        <AddCommentBtn>
+        <AddCommentBtn onClick={toggleFormHandler}>
           <i className="fas fa-plus" />
           Leave a Comment
         </AddCommentBtn>
       </CommentHeader>
-      <NewCommentForm />
+      {formVisible && <NewCommentForm toggleForm={toggleFormHandler} />}
       <CommentContainer>
         {comments.comments.length === 0 && <p>No comments yet</p>}
         {comments &&

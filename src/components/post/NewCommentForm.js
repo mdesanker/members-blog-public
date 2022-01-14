@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-const NewCommentForm = () => {
+const NewCommentForm = ({ toggleForm }) => {
   const submitHandler = (e) => {
     e.preventDefault();
+    toggleForm();
     console.log("FORM SUBMITTED");
   };
 
