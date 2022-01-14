@@ -14,6 +14,7 @@ import Post from "./components/post/Post";
 
 const App = () => {
   useEffect(() => {
+    console.log("LOADING USER");
     store.dispatch(loadUser());
   }, []);
 
