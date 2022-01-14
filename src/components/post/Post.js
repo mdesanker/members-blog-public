@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchPostById } from "../../store/slices/postsSlice";
 import { DateTime } from "luxon";
-import Comments from "./Comments";
+import CommentSection from "./CommentSection";
 
 const Post = () => {
   const { id } = useParams();
@@ -36,7 +36,7 @@ const Post = () => {
           </PostLikes>
         </PostDetails>
         <PostContent>{post && post.content}</PostContent>
-        <Comments />
+        <CommentSection />
       </Container>
     </PostWrapper>
   );
