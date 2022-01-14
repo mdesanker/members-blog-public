@@ -23,7 +23,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(fetchAllPosts());
-    dispatch(fetchPostById({ id: "61e0d57d1680fe1d92ccd641" }));
   }, []);
 
   return (
