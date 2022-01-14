@@ -13,8 +13,8 @@ const CommentSection = () => {
   const [formVisible, setFormVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const comments = useSelector((state) => state.comments);
-  console.log(comments.comments);
+  const { comments, commentCount } = useSelector((state) => state.comments);
+  console.log(comments);
 
   const toggleFormHandler = () => {
     setFormVisible(!formVisible);
@@ -27,7 +27,7 @@ const CommentSection = () => {
   return (
     <CommentsWrapper>
       <CommentHeader>
-        <h1>Comments ({comments && comments.commentCount})</h1>
+        <h1>Comments ({comments && commentCount})</h1>
         <AddCommentBtn onClick={toggleFormHandler}>
           <i className="fas fa-plus" />
           Leave a Comment
@@ -35,9 +35,9 @@ const CommentSection = () => {
       </CommentHeader>
       {formVisible && <NewCommentForm toggleForm={toggleFormHandler} />}
       <CommentContainer>
-        {comments.comments.length === 0 && <p>No comments yet</p>}
+        {comments.length === 0 && <p>No comments yet</p>}
         {comments &&
-          comments.comments.map((comment) => {
+          comments.map((comment) => {
             return <Comment key={comment._id} comment={comment} />;
           })}
       </CommentContainer>

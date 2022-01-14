@@ -1,10 +1,24 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const NewCommentForm = ({ toggleForm }) => {
+  const [formData, setFormData] = useState({
+    comment: "",
+  });
+
+  const { comment } = formData;
+
+  const inputHandler = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     toggleForm();
-    console.log("FORM SUBMITTED");
+    console.log(formData);
   };
 
   return (
@@ -14,6 +28,8 @@ const NewCommentForm = ({ toggleForm }) => {
         name="comment"
         id="comment"
         placeholder="Leave your comment here..."
+        value={comment}
+        onChange={inputHandler}
       />
       <SubmitBtn type="submit">Comment</SubmitBtn>
     </FormWrapper>
