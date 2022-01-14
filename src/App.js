@@ -10,6 +10,7 @@ import Login from "./components/auth/Login";
 import store from "./store/store";
 import { loadUser } from "./store/slices/userSlice";
 import PrivateRoute from "./routing/PrivateRoute";
+import Post from "./components/post/Post";
 
 const App = () => {
   useEffect(() => {
@@ -24,15 +25,23 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route
+        <Route
           path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
-        /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        />
+        <Route
+          path="/dashboard/post/:id"
+          element={
+            <PrivateRoute>
+              <Post />
+            </PrivateRoute>
+          }
+        />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
       <Footer />
     </Fragment>

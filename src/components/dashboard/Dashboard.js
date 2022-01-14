@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { fetchAllPosts, fetchPostById } from "../../store/slices/postsSlice";
-import BlogPostCard from "../elements/BlogPostCard";
+import BlogPostCard from "./BlogPostCard";
 import Title from "../elements/Title";
 
 const Dashboard = () => {
