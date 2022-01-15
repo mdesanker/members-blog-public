@@ -22,9 +22,11 @@ const Dashboard = () => {
       <Title>Posts</Title>
       <PostContainer>
         {posts.length > 0 &&
-          posts.map((post) => {
-            return <BlogPostCard key={post._id} post={post} />;
-          })}
+          posts
+            .filter((post) => post.publish === true)
+            .map((post) => {
+              return <BlogPostCard key={post._id} post={post} />;
+            })}
       </PostContainer>
     </DashboardWrapper>
   );
