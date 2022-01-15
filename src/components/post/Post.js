@@ -19,7 +19,7 @@ const Post = () => {
 
   const likeHandler = () => {
     console.log("Handler running");
-    dispatch(togglePostLike({ id: id }));
+    dispatch(togglePostLike({ id: id, user: user }));
   };
 
   useEffect(() => {
