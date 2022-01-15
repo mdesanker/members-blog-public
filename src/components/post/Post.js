@@ -6,13 +6,20 @@ import styled from "styled-components";
 import { fetchPostById } from "../../store/slices/postsSlice";
 import { DateTime } from "luxon";
 import CommentSection from "./CommentSection";
+import { useState } from "react";
 
 const Post = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
   const post = useSelector((state) => state.posts.post);
-  console.log(post);
+  const { user } = useSelector((state) => state.user);
+
+  const [userLike, setUserLike] = useState(false);
+
+  useEffect(() => {
+    setUserLike(post.likes.includes(user._id));
+  }, [post]);
 
   const dateFormat =
     post && DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED);
@@ -30,7 +37,7 @@ const Post = () => {
             <PostAuthor>{post && post.author.username}</PostAuthor>
             <PostDate>{post && dateFormat}</PostDate>
           </DetailSection>
-          <PostLikes>
+          <PostLikes liked={userLike}>
             {post && post.likes.length}
             <i className="far fa-thumbs-up" />
           </PostLikes>
@@ -80,7 +87,8 @@ const PostDate = styled.p`
 
 const PostLikes = styled.button`
   font-size: 1rem;
-  color: gray;
+  // color: gray
+  color: ${({ liked }) => (liked ? "blue" : "gray")};
   padding: 0.5rem 1rem;
   display: flex;
   gap: 10px;
