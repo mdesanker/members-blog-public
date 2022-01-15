@@ -14,7 +14,12 @@ const Comment = ({ comment }) => {
         <Author>{author.username}</Author>
         <Date>{dateFormat}</Date>
       </CommentHeader>
-      <p>{content}</p>
+      <ContentContainer>
+        <Content>{content}</Content>
+        <DeleteBtn>
+          <i className="far fa-trash-alt" />
+        </DeleteBtn>
+      </ContentContainer>
     </CommentWrapper>
   );
 };
@@ -40,6 +45,29 @@ const Author = styled.p`
 const Date = styled.p`
   color: gray;
   font-size: 0.9rem;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Content = styled.p`
+  flex-grow: 1;
+`;
+
+const DeleteBtn = styled.button`
+  font-size: 0.9rem;
+  color: lightgray;
+  padding: 2px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms;
+
+  &:hover {
+    color: rgba(255, 0, 0, 0.4);
+  }
 `;
 
 export default Comment;
