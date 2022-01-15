@@ -1,12 +1,20 @@
 import styled from "styled-components";
 import { DateTime } from "luxon";
+import { useDispatch } from "react-redux";
+import { deleteCommentById } from "../../store/slices/commentsSlice";
 
 const Comment = ({ comment }) => {
-  const { author, content, date } = comment;
+  const { _id, author, content, date } = comment;
+  const dispatch = useDispatch();
 
   const dateFormat = DateTime.fromISO(date).toLocaleString(
     DateTime.DATETIME_MED
   );
+
+  const deleteHandler = () => {
+    // console.log({ id: _id });
+    dispatch(deleteCommentById({ id: _id }));
+  };
 
   return (
     <CommentWrapper>
@@ -16,7 +24,7 @@ const Comment = ({ comment }) => {
       </CommentHeader>
       <ContentContainer>
         <Content>{content}</Content>
-        <DeleteBtn>
+        <DeleteBtn onClick={deleteHandler}>
           <i className="far fa-trash-alt" />
         </DeleteBtn>
       </ContentContainer>

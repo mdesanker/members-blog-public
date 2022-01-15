@@ -56,6 +56,37 @@ export const createComment = createAsyncThunk(
   }
 );
 
+// Delete comment by Id
+export const deleteCommentById = createAsyncThunk(
+  "comment/deleteById",
+  async ({ id }, thunkAPI) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify({ id }),
+    };
+
+    try {
+      console.log("DELETING COMMENT");
+      const res = await axios.delete(
+        "http://localhost:5000/api/comment/delete",
+        config
+      );
+      console.log("DELETE");
+      console.log(res.data);
+    } catch (err) {
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => {
+          return thunkAPI.dispatch(timedError(error));
+        });
+      }
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   comments: [],
   commentCount: 0,
