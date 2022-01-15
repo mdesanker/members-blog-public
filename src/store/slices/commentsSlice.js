@@ -73,8 +73,7 @@ export const deleteCommentById = createAsyncThunk(
         "http://localhost:5000/api/comment/delete",
         config
       );
-      console.log("DELETE");
-      console.log(res.data);
+      return id;
     } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {
@@ -108,6 +107,12 @@ const commentsSlice = createSlice({
     builder.addCase(createComment.fulfilled, (state, actions) => {
       state.comments.push(actions.payload);
       state.commentCount++;
+    });
+    builder.addCase(deleteCommentById.fulfilled, (state, actions) => {
+      state.comments = state.comments.filter(
+        (comment) => comment._id !== actions.payload
+      );
+      state.commentCount--;
     });
   },
 });
