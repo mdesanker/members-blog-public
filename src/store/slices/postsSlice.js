@@ -36,6 +36,35 @@ export const fetchPostById = createAsyncThunk(
   }
 );
 
+// Toggle post like
+export const togglePostLike = createAsyncThunk(
+  "post/toggleLike",
+  async ({ id }, thunkAPI) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    // const body = JSON.stringify({ id });
+
+    try {
+      console.log("Toggling likes");
+      const res = await axios.put(
+        `http://localhost:5000/api/post/like/${id}`,
+        config
+      );
+      console.log(res.data);
+    } catch (err) {
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
+      }
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const initialState = {
   posts: [],
   post: null,

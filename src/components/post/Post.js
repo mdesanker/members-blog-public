@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { fetchPostById } from "../../store/slices/postsSlice";
+import { fetchPostById, togglePostLike } from "../../store/slices/postsSlice";
 import { DateTime } from "luxon";
 import CommentSection from "./CommentSection";
 import { useState } from "react";
@@ -17,16 +17,23 @@ const Post = () => {
 
   const [userLike, setUserLike] = useState(false);
 
-  useEffect(() => {
-    setUserLike(post.likes.includes(user._id));
-  }, [post]);
+  const likeHandler = () => {
+    console.log("Handler running");
+    dispatch(togglePostLike({ id: id }));
+  };
 
-  const dateFormat =
-    post && DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED);
+  useEffect(() => {
+    if (post) {
+      setUserLike(post.likes.includes(user._id));
+    }
+  }, [post]);
 
   useEffect(() => {
     dispatch(fetchPostById({ id: id }));
   }, []);
+
+  const dateFormat =
+    post && DateTime.fromISO(post.date).toLocaleString(DateTime.DATE_MED);
 
   return (
     <PostWrapper>
@@ -37,7 +44,7 @@ const Post = () => {
             <PostAuthor>{post && post.author.username}</PostAuthor>
             <PostDate>{post && dateFormat}</PostDate>
           </DetailSection>
-          <PostLikes liked={userLike}>
+          <PostLikes liked={userLike} onClick={likeHandler}>
             {post && post.likes.length}
             <i className="far fa-thumbs-up" />
           </PostLikes>

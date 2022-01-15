@@ -5,7 +5,7 @@ import { timedError } from "./alertSlice";
 // Fetch comments by post id
 export const fetchCommentsByPostId = createAsyncThunk(
   "comments/fetchByPostId",
-  async ({ id }, thunKAPI) => {
+  async ({ id }, thunkAPI) => {
     try {
       const res = await axios.get(
         `http://localhost:5000/api/comment/post/${id}`
@@ -14,11 +14,9 @@ export const fetchCommentsByPostId = createAsyncThunk(
     } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {
-        errors.forEach((error) => {
-          thunKAPI.dispatch(timedError(error));
-        });
+        errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
       }
-      return thunKAPI.rejectWithValue(err.response.data);
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   }
 );
@@ -47,9 +45,7 @@ export const createComment = createAsyncThunk(
       const errors = err.response.data.errors;
       console.log(errors);
       if (errors) {
-        errors.forEach((error) => {
-          return thunkAPI.dispatch(timedError(error));
-        });
+        errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
       }
       return thunkAPI.rejectWithValue(err.response.data);
     }
@@ -77,9 +73,7 @@ export const deleteCommentById = createAsyncThunk(
     } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {
-        errors.forEach((error) => {
-          return thunkAPI.dispatch(timedError(error));
-        });
+        errors.forEach((error) => thunkAPI.dispatch(timedError(error)));
       }
       return thunkAPI.rejectWithValue(err.response.data);
     }
