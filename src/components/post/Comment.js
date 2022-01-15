@@ -2,17 +2,19 @@ import styled from "styled-components";
 import { DateTime } from "luxon";
 import { useDispatch } from "react-redux";
 import { deleteCommentById } from "../../store/slices/commentsSlice";
+import { useSelector } from "react-redux";
 
 const Comment = ({ comment }) => {
   const { _id, author, content, date } = comment;
   const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.user);
 
   const dateFormat = DateTime.fromISO(date).toLocaleString(
     DateTime.DATETIME_MED
   );
 
   const deleteHandler = () => {
-    // console.log({ id: _id });
     dispatch(deleteCommentById({ id: _id }));
   };
 
@@ -24,9 +26,11 @@ const Comment = ({ comment }) => {
       </CommentHeader>
       <ContentContainer>
         <Content>{content}</Content>
-        <DeleteBtn onClick={deleteHandler}>
-          <i className="far fa-trash-alt" />
-        </DeleteBtn>
+        {author._id === user._id && (
+          <DeleteBtn onClick={deleteHandler}>
+            <i className="far fa-trash-alt" />
+          </DeleteBtn>
+        )}
       </ContentContainer>
     </CommentWrapper>
   );
